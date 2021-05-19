@@ -1,4 +1,3 @@
-
 exports.handler = (event, context, callback) => {
     const {userPassword} = event.request;
     let isValid = true;
@@ -23,13 +22,16 @@ exports.handler = (event, context, callback) => {
     }
 
     if (errorMessages.length > 0) isValid = false;
+    event.success = isValid;
+
     if (isValid) { 
         callback(null, event);
+        // Optional chaining to avoid errors during tests when context is an empty Object
         context.succeed?.("Password OK");
     } else {
+        // Optional chaining to avoid errors during tests when context is an empty Object
         context.fail?.(errorMessages.join('\n'));
     }
-    event.success = isValid;
 };
 
 //^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W])[\\W\\w]{12,}$

@@ -1,4 +1,3 @@
-
 exports.handler = (event, context, callback) => {
 
     const {username} = event.request.userAttributes;
@@ -23,13 +22,16 @@ exports.handler = (event, context, callback) => {
     }
 
     if (errorMessages.length > 0) isValid = false;
+    event.success = isValid;
+
     if (isValid) { 
         callback(null, event);
+        // Optional chaining to avoid errors during tests when context is an empty Object
         context.succeed?.("Username OK");
     } else {
+        // Optional chaining to avoid errors during tests when context is an empty Object
         context.fail?.(errorMessages.join('\n'));
     }
-    event.success = isValid;
 };
 
 //^(?!-|_)((?!--|-_|_-|__)[\\w-]){3,}[^\\W_]$

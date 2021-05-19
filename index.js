@@ -4,11 +4,13 @@ const usernameCheck = require('./usernameCheck');
 const event =  {
     request: {
         userAttributes: {
-        username: 'Node-js'
+            username: 'Node-js'
         },
-        userPassword: 'AAaaaaaaaaa#'
+        userPassword: '{#######}'
     }
 }
 
-console.log(passwordCheck.handler(event,{},()=>{}));
-console.log(usernameCheck.handler(event,{},()=>{}));
+passwordCheck.handler(event,{},()=>{});
+console.log("password validation: ", event.success);
+usernameCheck.handler(event,{},()=>{});
+console.log("username validation: ", event.success);
