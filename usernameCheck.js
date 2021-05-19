@@ -25,9 +25,9 @@ exports.handler = (event, context, callback) => {
     if (errorMessages.length > 0) isValid = false;
     if (isValid) { 
         callback(null, event);
-        //context.succeed("Username OK");
+        context.succeed?.("Username OK");
     } else {
-        //context.fail(errorMessages.join('\n'));
+        context.fail?.(errorMessages.join('\n'));
     }
     event.success = isValid;
 };
