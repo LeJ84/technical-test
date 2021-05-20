@@ -27,10 +27,10 @@ exports.handler = (event, context, callback) => {
     if (isValid) { 
         callback(null, event);
         // Optional chaining to avoid errors during tests when context is an empty Object
-        context.succeed?.("Password OK");
+        //context.succeed?.("Password OK");
     } else {
         // Optional chaining to avoid errors during tests when context is an empty Object
-        context.fail?.(errorMessages.join('\n'));
+        // context.fail?.(errorMessages.join('\n'));
     }
 };
 
